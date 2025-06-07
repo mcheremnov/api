@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/badoux/checkmail"
+	"github.com/mcheremnov/api/infrastructure/security"
 )
 
 type User struct {
@@ -25,15 +26,15 @@ type PublicUser struct {
 	LastName  string `gorm:"size:100;not null;" json:"last_name"`
 }
 
-//BeforeSave is a gorm hook
-// func (u *User) BeforeSave() error {
-// 	hashPassword, err := security.Hash(u.Password)
-// 	if err != nil {
-// 		return err
-// 	}
-// 	u.Password = string(hashPassword)
-// 	return nil
-// }
+// BeforeSave is a gorm hook
+func (u *User) BeforeSave() error {
+	hashPassword, err := security.Hash(u.Password)
+	if err != nil {
+		return err
+	}
+	u.Password = string(hashPassword)
+	return nil
+}
 
 type Users []User
 
