@@ -13,14 +13,13 @@ import (
 )
 
 func init() {
-	//To load our environmental variables.
+	// To load our environmental variables.
 	if err := godotenv.Load(); err != nil {
 		log.Println("no env gotten")
 	}
 }
 
 func main() {
-
 	dbdriver := os.Getenv("DB_DRIVER")
 	host := os.Getenv("DB_HOST")
 	password := os.Getenv("DB_PASSWORD")
@@ -28,7 +27,7 @@ func main() {
 	dbname := os.Getenv("DB_NAME")
 	port := os.Getenv("DB_PORT")
 
-	//redis details
+	// redis details
 	redis_host := os.Getenv("REDIS_HOST")
 	redis_port := os.Getenv("REDIS_PORT")
 	redis_password := os.Getenv("REDIS_PASSWORD")
@@ -53,20 +52,20 @@ func main() {
 	r := gin.Default()
 	r.Use(middleware.CORSMiddleware())
 
-	//user routes
+	// user routes
 	r.POST("/users", users.SaveUser)
 	r.GET("/users", users.GetUsers)
 	r.GET("/users/:user_id", users.GetUser)
 
-	//authentication routes
+	// authentication routes
 	r.POST("/login", authenticate.Login)
 	r.POST("/logout", authenticate.Logout)
 	r.POST("/refresh", authenticate.Refresh)
 
-	//Starting the application
+	// Starting the application
 	app_port := os.Getenv("PORT")
 	if app_port == "" {
-		app_port = "8888"
+		app_port = "8080"
 	}
 	log.Fatal(r.Run(":" + app_port))
 }
