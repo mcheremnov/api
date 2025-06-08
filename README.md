@@ -1,13 +1,16 @@
 # Go Project 🚀
 
 ## Prerequisites
+
 Ensure you have the following installed:
+
 - **Go**: [Download Go](https://go.dev/dl/)
 - **Docker**: [Get Docker](https://docs.docker.com/get-docker/)
 
 ## Setup Instructions
 
 ### 1️⃣ Clone the Repository
+
 ```sh
 git clone https://github.com/mcheremnov/api.git
 cd api
@@ -31,16 +34,25 @@ docker run --name redis \
   -p 6379:6379 -d redis
 
 ```
+
 ⚠️WARNING⚠️ Do not forget to change variables in .env file with your variables above!!!
 
 ### 4️⃣ Start All Containers
 
 To start all stopped containers, run:
+
 ```sh
 docker start $(docker ps -aq)
 ```
 
 ### 5️⃣ Run the Go Project
+
 ```sh
 go run main.go 
 ```
+
+### Contributing
+
+Feel free to fork, submit pull requests, and collaborate! 🛠️
+
+[MIT License](https://mit-license.org/)
